@@ -26,6 +26,9 @@ public class Prestamo {
 		setAlumno(copia.getAlumno());
 		setLibro(copia.getLibro());
 		setFechaPrestamo(copia.getFechaPrestamo());
+		if (copia.getFechaDevolucion() != null) {
+			this.fechaDevolucion = copia.getFechaDevolucion();
+		}
 	}
 
 	public static Prestamo getPrestamoFicticio(Alumno alumno, Libro libro)  throws NullPointerException, IllegalArgumentException{
@@ -48,9 +51,9 @@ public class Prestamo {
 		if (fechaDevolucion == null) {
 			return puntos = 0;
 		}
-		if (ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaPrestamo()) <= MAX_DIAS_PRESTAMO) {
-			puntos = Math.round(
-					ChronoUnit.DAYS.between(fechaPrestamo, fechaDevolucion) / libro.getPuntos() / MAX_DIAS_PRESTAMO);
+		if (ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaDevolucion())  <= MAX_DIAS_PRESTAMO && ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaDevolucion()) > 0){
+			double calculo =  libro.getPuntos() / ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaDevolucion());
+			puntos = (int) Math.round(calculo);
 		}
 		return puntos;
 	}

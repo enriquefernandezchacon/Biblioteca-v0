@@ -52,10 +52,12 @@ public class Prestamos {
 		if (libro == null) {
 			throw new NullPointerException("ERROR: El libro no puede ser nulo.");
 		}
+		int indiceCopia = 0;
 		Prestamo[] copiaPrestamos = new Prestamo[capacidad];
 		for (int i = 0; !tamanoSuperado(i); i++) {
 			if (coleccionPrestamos[i].getLibro().equals(libro)) {
-				copiaPrestamos[i] = new Prestamo(coleccionPrestamos[i]);
+				copiaPrestamos[indiceCopia] = new Prestamo(coleccionPrestamos[i]);
+				indiceCopia++;
 			}
 		}
 		return copiaPrestamos;
@@ -65,19 +67,19 @@ public class Prestamos {
 		if (fecha == null) {
 			throw new NullPointerException("ERROR: La fecha no puede ser nula.");
 		}
+		int indiceCopia = 0;
 		Prestamo[] copiaPrestamos = new Prestamo[capacidad];
 		for (int i = 0; !tamanoSuperado(i); i++) {
 			if (mismoMes(coleccionPrestamos[i].getFechaPrestamo(), fecha)) {
-				copiaPrestamos[i] = new Prestamo(coleccionPrestamos[i]);
+				copiaPrestamos[indiceCopia] = new Prestamo(coleccionPrestamos[i]);
+				indiceCopia++;
 			}
 		}
 		return copiaPrestamos;
 	}
 
 	private boolean mismoMes(LocalDate fechaUno, LocalDate fechaDos) {
-		int mesUno = fechaUno.getMonthValue();
-		int mesDos = fechaDos.getMonthValue();
-		return mesUno == mesDos;
+		return fechaUno.equals(fechaDos);
 	}
 
 	public int getTamano() {
@@ -150,7 +152,8 @@ public class Prestamos {
 		if (tamanoSuperado(indice)) {
 			return null;
 		} else {
-			return new Prestamo(coleccionPrestamos[indice]);
+			Prestamo prestamoBuscado = new Prestamo(coleccionPrestamos[indice]);
+			return prestamoBuscado;
 		}
 	}
 
