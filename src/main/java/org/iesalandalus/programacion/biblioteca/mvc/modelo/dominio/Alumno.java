@@ -1,7 +1,5 @@
 package org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio;
 
-import java.util.Objects;
-
 public class Alumno {
 
 	private static String ER_NOMBRE = "[a-zA-ZÁáÉéÍíÓóÚú]+[\\s]+[a-zA-ZÁáÉéÍíÓóÚú\\s]*";
@@ -9,24 +7,24 @@ public class Alumno {
 	private String nombre;
 	private String correo;
 	private Curso curso;
-	
+
 	public Alumno(String nombre, String correo, Curso curso) {
 		setNombre(nombre);
 		setCorreo(correo);
 		setCurso(curso);
 	}
-	
+
 	public Alumno(Alumno copia) {
-		if(copia==null) {
+		if (copia == null) {
 			throw new NullPointerException("ERROR: No es posible copiar un alumno nulo.");
 		}
 		setNombre(copia.getNombre());
 		setCorreo(copia.getCorreo());
 		setCurso(copia.getCurso());
 	}
-	
+
 	public static Alumno getAlumnoFicticio(String correo) throws NullPointerException {
-		if (correo==null) {
+		if (correo == null) {
 			throw new NullPointerException("ERROR: El correo no puede ser nulo.");
 		}
 		if (!correo.matches(ER_CORREO)) {
@@ -35,11 +33,11 @@ public class Alumno {
 		Alumno alumnoFicticio = new Alumno("Enrique Octavio", correo, Curso.PRIMERO);
 		return alumnoFicticio;
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	private void setNombre(String nombre) {
 		if (nombre == null) {
 			throw new NullPointerException("ERROR: El nombre no puede ser nulo.");
@@ -47,6 +45,10 @@ public class Alumno {
 		if (!nombre.matches(ER_NOMBRE)) {
 			throw new IllegalArgumentException("ERROR: El nombre no tiene un formato válido.");
 		}
+		this.nombre = formateaNombre(nombre);
+	}
+
+	private String formateaNombre(String nombre) {
 		String nombreFormateado = "";
 		int longitudDelNombre = nombre.length();
 		int letraActual = 0;
@@ -54,28 +56,28 @@ public class Alumno {
 			nombreFormateado += nombre.toUpperCase().charAt(letraActual);
 			letraActual++;
 			if (letraActual < longitudDelNombre) {
-				while(letraActual < longitudDelNombre && nombre.charAt(letraActual)!=' ') {
+				while (letraActual < longitudDelNombre && nombre.charAt(letraActual) != ' ') {
 					nombreFormateado += nombre.toLowerCase().charAt(letraActual);
 					letraActual++;
 				}
 				if (letraActual < longitudDelNombre) {
 					nombreFormateado += " ";
 					letraActual++;
-					while(letraActual < longitudDelNombre && nombre.charAt(letraActual) == ' ') {
+					while (letraActual < longitudDelNombre && nombre.charAt(letraActual) == ' ') {
 						letraActual++;
 					}
 				}
 			}
 		}
-		this.nombre=nombreFormateado;
+		return nombreFormateado;
 	}
-	
+
 	public String getCorreo() {
 		return correo;
 	}
-	
+
 	private void setCorreo(String correo) {
-		if(correo==null) {
+		if (correo == null) {
 			throw new NullPointerException("ERROR: El correo no puede ser nulo.");
 		}
 		if (!correo.matches(ER_CORREO)) {
@@ -90,15 +92,15 @@ public class Alumno {
 	}
 
 	public void setCurso(Curso curso) {
-		if(curso==null) {
+		if (curso == null) {
 			throw new NullPointerException("ERROR: El curso no puede ser nulo.");
 		}
-		if(curso==Curso.PRIMERO|curso==Curso.SEGUNDO|curso==Curso.TERCERO|curso==Curso.CUARTO){
-			this.curso=curso;
-		}else {
+		if (curso == Curso.PRIMERO | curso == Curso.SEGUNDO | curso == Curso.TERCERO | curso == Curso.CUARTO) {
+			this.curso = curso;
+		} else {
 			throw new IllegalArgumentException("ERROR 3");
 		}
-		
+
 	}
 
 	@Override
@@ -108,7 +110,7 @@ public class Alumno {
 		result = prime * result + ((correo == null) ? 0 : correo.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -131,17 +133,16 @@ public class Alumno {
 		String[] iniciales = new String[4];
 		int numeroArray = 0;
 		int letra = 0;
-		while(numeroArray < 4) {
-			if(Character.isUpperCase(nombre.charAt(letra))) {
-				iniciales[numeroArray]="";
-				iniciales[numeroArray]+=nombre.charAt(letra);
+		while (numeroArray < 4) {
+			if (Character.isUpperCase(nombre.charAt(letra))) {
+				iniciales[numeroArray] = "";
+				iniciales[numeroArray] += nombre.charAt(letra);
 				numeroArray++;
 			}
 			letra++;
 		}
-		return "nombre=" + nombre + " (" + iniciales[0] + iniciales[1] + iniciales[2] + iniciales[3] +  "), correo=" + correo + ", curso=" + curso;
+		return "nombre=" + nombre + " (" + iniciales[0] + iniciales[1] + iniciales[2] + iniciales[3] + "), correo="
+				+ correo + ", curso=" + curso;
 	}
-	
-	
-	
+
 }

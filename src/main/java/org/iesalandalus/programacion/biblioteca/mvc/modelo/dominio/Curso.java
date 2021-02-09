@@ -1,20 +1,16 @@
 package org.iesalandalus.programacion.biblioteca.mvc.modelo.dominio;
 
-	
-	public enum Curso { 
-		
-		PRIMERO("1"), SEGUNDO("2"), TERCERO("3"), CUARTO("4");
+public enum Curso {
 
-		String cadenaAMostrar;
+	PRIMERO("1"), SEGUNDO("2"), TERCERO("3"), CUARTO("4");
 
-		
-		private Curso(String curso) {
-			this.cadenaAMostrar=curso+"º ESO";
-		}
-		
-		public String toString() {
-			return cadenaAMostrar;
-		}
+	String cadenaAMostrar;
+
+	private Curso(String curso) {
+		this.cadenaAMostrar = curso + "º ESO";
 	}
 
-	
+	public String toString() {
+		return cadenaAMostrar;
+	}
+}

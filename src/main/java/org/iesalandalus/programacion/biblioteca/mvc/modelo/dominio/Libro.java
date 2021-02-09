@@ -7,14 +7,14 @@ public class Libro {
 	private String titulo;
 	private String autor;
 	private int numPaginas;
-	
+
 	public Libro(String titulo, String autor, int numeroDePaginas) {
 		setTitulo(titulo);
 		setAutor(autor);
 		setNumPaginas(numeroDePaginas);
 	}
-	
-	public Libro (Libro copia) {
+
+	public Libro(Libro copia) {
 		if (copia == null) {
 			throw new NullPointerException("ERROR: No es posible copiar un libro nulo.");
 		}
@@ -22,7 +22,7 @@ public class Libro {
 		setAutor(copia.getAutor());
 		setNumPaginas(copia.getNumPaginas());
 	}
-	
+
 	public static Libro getLibroFicticio(String titulo, String autor) {
 		if (titulo == null) {
 			throw new NullPointerException("ERROR: El título no puede ser nulo.");
@@ -44,10 +44,10 @@ public class Libro {
 		}
 		int tamanoTitulo = titulo.length();
 		boolean vacio = true;
-		for (int letra=0; letra < tamanoTitulo; letra++) {
+		for (int letra = 0; letra < tamanoTitulo; letra++) {
 			if (titulo.charAt(letra) != ' ') {
 				vacio = false;
-			} 
+			}
 		}
 		if (vacio == true) {
 			throw new IllegalArgumentException("ERROR: El título no puede estar vacío.");
@@ -66,10 +66,10 @@ public class Libro {
 		}
 		int tamanoAutor = autor.length();
 		boolean vacio = true;
-		for (int letra=0; letra < tamanoAutor; letra++) {
+		for (int letra = 0; letra < tamanoAutor; letra++) {
 			if (autor.charAt(letra) != ' ') {
 				vacio = false;
-			} 
+			}
 		}
 		if (vacio == true) {
 			throw new IllegalArgumentException("ERROR: El autor no puede estar vacío.");
@@ -88,7 +88,7 @@ public class Libro {
 		}
 		this.numPaginas = numPaginas;
 	}
-	
+
 	public float getPuntos() {
 		int tramoPuntos = numPaginas / PAGINAS_PARA_RECOMPENSA + 1;
 		float puntos = tramoPuntos * PUNTOS_PREMIO;
@@ -130,7 +130,5 @@ public class Libro {
 	public String toString() {
 		return "título=" + titulo + ", autor=" + autor + ", número de páginas=" + numPaginas;
 	}
-	
-	
-	
+
 }
