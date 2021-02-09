@@ -90,7 +90,7 @@ public class Prestamos {
 		return capacidad;
 	}
 
-	public void prestar(Prestamo prestamo) throws OperationNotSupportedException {
+	public void prestar(Prestamo prestamo) throws OperationNotSupportedException, NullPointerException, IllegalArgumentException {
 		if (prestamo == null) {
 			throw new NullPointerException("ERROR: No se puede prestar un préstamo nulo.");
 		}
