@@ -51,8 +51,9 @@ public class Prestamo {
 		if (fechaDevolucion == null) {
 			return puntos = 0;
 		}
-		if (ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaDevolucion())  <= MAX_DIAS_PRESTAMO && ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaDevolucion()) > 0){
-			double calculo =  libro.getPuntos() / ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaDevolucion());
+		long diasEntre = ChronoUnit.DAYS.between(getFechaPrestamo(), getFechaDevolucion());
+		if ( diasEntre <= MAX_DIAS_PRESTAMO && diasEntre > 0){
+			double calculo =  libro.getPuntos() / diasEntre;
 			puntos = (int) Math.round(calculo);
 		}
 		return puntos;

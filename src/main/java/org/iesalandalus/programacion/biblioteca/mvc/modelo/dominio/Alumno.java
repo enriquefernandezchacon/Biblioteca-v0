@@ -130,16 +130,16 @@ public class Alumno {
 
 	@Override
 	public String toString() {
-		String[] iniciales = new String[4];
+		String[] iniciales = { "", "", "", "" };
 		int numeroArray = 0;
-		int letra = 0;
-		while (numeroArray < 4) {
+
+		for (int letra = 0; letra < nombre.length(); letra++) {
 			if (Character.isUpperCase(nombre.charAt(letra))) {
-				iniciales[numeroArray] = "";
-				iniciales[numeroArray] += nombre.charAt(letra);
-				numeroArray++;
+				if (numeroArray < 4) {
+					iniciales[numeroArray] += nombre.charAt(letra);
+					numeroArray++;
+				}
 			}
-			letra++;
 		}
 		return "nombre=" + nombre + " (" + iniciales[0] + iniciales[1] + iniciales[2] + iniciales[3] + "), correo="
 				+ correo + ", curso=" + curso;

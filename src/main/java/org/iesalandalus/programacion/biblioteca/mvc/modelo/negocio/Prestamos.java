@@ -14,7 +14,7 @@ public class Prestamos {
 	private int tamano;
 	private Prestamo[] coleccionPrestamos;
 
-	public Prestamos(int capacidad) {
+	public Prestamos(int capacidad) throws IllegalArgumentException, NullPointerException {
 		if (capacidad <= 0) {
 			throw new IllegalArgumentException("ERROR: La capacidad debe ser mayor que cero.");
 		}
@@ -27,7 +27,7 @@ public class Prestamos {
 		return copiaProfundaPrestamos();
 	}
 
-	private Prestamo[] copiaProfundaPrestamos() {
+	private Prestamo[] copiaProfundaPrestamos() throws IllegalArgumentException, NullPointerException{
 		Prestamo[] copiaPrestamos = new Prestamo[capacidad];
 		for (int i = 0; !tamanoSuperado(i); i++) {
 			copiaPrestamos[i] = new Prestamo(coleccionPrestamos[i]);
@@ -127,8 +127,7 @@ public class Prestamos {
 		return indice >= capacidad;
 	}
 
-	public void devolver(Prestamo prestamo, LocalDate fechaDevolucion)
-			throws OperationNotSupportedException, IllegalArgumentException, NullPointerException {
+	public void devolver(Prestamo prestamo, LocalDate fechaDevolucion) throws OperationNotSupportedException, IllegalArgumentException, NullPointerException {
 		if (prestamo == null) {
 			throw new NullPointerException("ERROR: No se puede devolver un préstamo nulo.");
 		}
@@ -144,7 +143,7 @@ public class Prestamos {
 
 	}
 
-	public Prestamo buscar(Prestamo prestamo) {
+	public Prestamo buscar(Prestamo prestamo) throws IllegalArgumentException, NullPointerException {
 		if (prestamo == null) {
 			throw new IllegalArgumentException("ERROR: No se puede buscar un préstamo nulo.");
 		}

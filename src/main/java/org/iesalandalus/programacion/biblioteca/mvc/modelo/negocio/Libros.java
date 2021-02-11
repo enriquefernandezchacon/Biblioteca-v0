@@ -10,7 +10,7 @@ public class Libros {
 	private int tamano;
 	private Libro[] coleccionLibros;
 	
-	public Libros(int capacidad) {
+	public Libros(int capacidad) throws IllegalArgumentException, NullPointerException {
 		if (capacidad <= 0) {
 			throw new IllegalArgumentException("ERROR: La capacidad debe ser mayor que cero.");
 		}
@@ -22,7 +22,7 @@ public class Libros {
 	public Libro[] get() {
 		return copiaProfundaLibros();
 	}
-	private Libro[] copiaProfundaLibros() {
+	private Libro[] copiaProfundaLibros() throws NullPointerException, IllegalArgumentException {
 		Libro[] copiaLibros = new Libro[capacidad];
 		for (int i = 0; !tamanoSuperado(i); i++) {
 			copiaLibros[i] = new Libro(coleccionLibros[i]);
@@ -38,7 +38,7 @@ public class Libros {
 		return capacidad;
 	}
 	
-	public void insertar(Libro libro) throws OperationNotSupportedException {
+	public void insertar(Libro libro) throws OperationNotSupportedException, IllegalArgumentException, NullPointerException {
 		if (libro == null) {
 			throw new NullPointerException("ERROR: No se puede insertar un libro nulo.");
 		}
@@ -75,7 +75,7 @@ public class Libros {
 		return indice >= capacidad;
 	}
 	
-	public Libro buscar(Libro libro) {
+	public Libro buscar(Libro libro) throws IllegalArgumentException, NullPointerException {
 		if (libro == null) {
 			throw new IllegalArgumentException("ERROR: No se puede buscar un libro nulo.");
 		}

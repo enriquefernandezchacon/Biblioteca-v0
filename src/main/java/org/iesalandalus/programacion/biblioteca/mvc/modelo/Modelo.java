@@ -24,21 +24,21 @@ public class Modelo {
 		alumnos = new Alumnos(CANTIDAD);
 	}
 	
-	public void insertar(Alumno alumno) throws OperationNotSupportedException {
+	public void insertar(Alumno alumno) throws OperationNotSupportedException , IllegalArgumentException, NullPointerException {
 		if (alumno == null ) {
 			throw new NullPointerException("ERROR: No se puede insertar un alumno nulo.");
 		}
 		alumnos.insertar(alumno);
 	}
 	
-	public void insertar(Libro libro) throws OperationNotSupportedException {
+	public void insertar(Libro libro) throws OperationNotSupportedException, IllegalArgumentException, NullPointerException {
 		if (libro == null ) {
 			throw new NullPointerException("ERROR: No se puede insertar un libro nulo.");
 		}
 		libros.insertar(libro);
 	}
 	
-	public void prestar(Prestamo prestamo) throws OperationNotSupportedException {
+	public void prestar(Prestamo prestamo) throws OperationNotSupportedException, IllegalArgumentException, NullPointerException {
 		if (prestamo == null ) {
 			throw new NullPointerException("ERROR: No se puede prestar un préstamo nulo.");
 		}
@@ -59,15 +59,15 @@ public class Modelo {
 		prestamos.devolver(prestamo, fechaDevolucion);
 	}
 	
-	public  Alumno buscar(Alumno alumno) {
+	public  Alumno buscar(Alumno alumno) throws IllegalArgumentException, NullPointerException {
 		return alumnos.buscar(alumno);
 	}
 	
-	public Libro buscar(Libro libro) {
+	public Libro buscar(Libro libro) throws IllegalArgumentException, NullPointerException {
 		return libros.buscar(libro);
 	}
 	
-	public Prestamo buscar(Prestamo prestamo) {
+	public Prestamo buscar(Prestamo prestamo) throws IllegalArgumentException, NullPointerException {
 		return prestamos.buscar(prestamo);
 	}
 	

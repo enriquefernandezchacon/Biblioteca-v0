@@ -10,7 +10,7 @@ public class Alumnos {
 	private int tamano;
 	private Alumno[] coleccionAlumnos;
 
-	public Alumnos(int capacidad) {
+	public Alumnos(int capacidad) throws IllegalArgumentException, NullPointerException {
 		if (capacidad <= 0) {
 			throw new IllegalArgumentException("ERROR: La capacidad debe ser mayor que cero.");
 		}
@@ -19,11 +19,11 @@ public class Alumnos {
 		this.tamano = 0;
 	}
 
-	public Alumno[] get() {
+	public Alumno[] get() throws IllegalArgumentException, NullPointerException{
 		return copiaProfundaAlumnos();
 	}
 
-	private Alumno[] copiaProfundaAlumnos() {
+	private Alumno[] copiaProfundaAlumnos() throws IllegalArgumentException, NullPointerException {
 		Alumno[] copiaAlumnos = new Alumno[capacidad];
 		for (int i = 0; !tamanoSuperado(i); i++) {
 			copiaAlumnos[i] = new Alumno(coleccionAlumnos[i]);
@@ -39,7 +39,7 @@ public class Alumnos {
 		return capacidad;
 	}
 
-	public void insertar(Alumno alumno) throws OperationNotSupportedException {
+	public void insertar(Alumno alumno) throws OperationNotSupportedException, IllegalArgumentException, NullPointerException {
 		if (alumno == null) {
 			throw new NullPointerException("ERROR: No se puede insertar un alumno nulo.");
 		}
@@ -76,7 +76,7 @@ public class Alumnos {
 		return indice >= capacidad;
 	}
 
-	public Alumno buscar(Alumno alumno) {
+	public Alumno buscar(Alumno alumno) throws IllegalArgumentException, NullPointerException {
 		if (alumno == null) {
 			throw new IllegalArgumentException("ERROR: No se puede buscar un alumno nulo.");
 		}
